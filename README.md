@@ -10,10 +10,10 @@ arguments (just run the commandline.py without arguments to get help)
 -f force download the show  (usually it will ask if the torrent correct)  
 -c config file (used instead)  
 
-don't forget to update the config.cfg file (configuration):
-host = [host url of the utorrent web api]
-user = [utorrent web api user]
-password = [utorrent password]
+don't forget to update the config.cfg file (configuration):  
+host = [host url of the utorrent web api]  
+user = [utorrent web api user]  
+password = [utorrent password]  
 
 e.g. (using the commandline script)
 
