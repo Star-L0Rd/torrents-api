@@ -1,7 +1,8 @@
 import  getopt
 import  sys
 
-from torrentHandling import TorrentCrawler
+from torrentHandling.configs import Config
+from torrentHandling.TorrentCrawler import TorrentProjectCrawler
 from torrentHandling.UtorrentClient import UtorrentClient
 
 
@@ -23,7 +24,7 @@ def main():
                 name = arg
 
 
-        crawler = TorrentCrawler.TorrentProjectCrawler()
+        crawler = TorrentProjectCrawler()
         url, title, time = crawler.GetLatestTorrent(name)
         if not force:
             isDownload = raw_input("Download " +  title + " Y/N: ")
@@ -31,7 +32,7 @@ def main():
                 print "Canceled"
                 return
 
-        client = UtorrentClient('http://salon:8080/gui', 'admin', 'alonbalon')
+        client = UtorrentClient(Config.UtorrentHost, Config._utorrentUser, Config._utorrentPassword)
         client.SendTorrentLink(url=url)
 
 

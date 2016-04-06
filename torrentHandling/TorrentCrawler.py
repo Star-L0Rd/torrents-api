@@ -1,19 +1,28 @@
 import requests
+from configs import Config
 from lxml import html
 
 class TorrentProjectCrawler:
 
-    domain = "https://torrentproject.se/"
+    domain = Config.TorrentRepositoryHost
     def GetLatestTorrent(self, name):
+
+        #get the torrent we are looking for and its properties
         url = self.domain + '?s=' + name + '&orderby=best'
         page = requests.get(url)
         tree = html.fromstring(page.content)
+
         url = tree.xpath('//div[@class="torrent"]/h3/a')[0].attrib['href']
         time = tree.xpath('//div[@class="torrent"]/div/span[@class="bc cated"]')[0].text
-        url = self.domain + 'torrent/' + url.split('/')[3].upper() + ".torrent"
-        return url, tree.xpath('//div[@class="torrent"]/h3/a')[0].attrib['title'], time
-        # print page.content
-        # listNames = tree.xpath('//div[@id="download"]/div/div/a/text()')
+        title = tree.xpath('//div[@class="torrent"]/h3/a')[0].attrib['title']
+
+        #now lets get the torrent magnet link
+        page = requests.get(url)
+        tree = html.fromstring(page.content)
+        url = tree.xpath('//div[@class="usite"]/a')[0].attrib['href']
+
+        return url, title, time
+
 
 
 
