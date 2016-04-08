@@ -27,7 +27,7 @@ def main():
         crawler = TorrentProjectCrawler()
         url, title, time = crawler.GetLatestTorrent(name)
         if not force:
-            isDownload = raw_input("Download " +  title + " Y/N: ")
+            isDownload = raw_input("Download " +  title + "(" + time + ") Y/N: ")
             if isDownload != 'Y' and isDownload != 'y':
                 print "Canceled"
                 return
