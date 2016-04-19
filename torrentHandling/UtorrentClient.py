@@ -21,6 +21,6 @@ class UtorrentClient:
         result = self._session.get(self._host + '/?token=' + self._token + '&action=add-url&s=' + urllib.quote(url, safe='') ,
              auth=(self._user,self._password))
         if str(result).find('200') > 0:
-            print 'Added Sucessfully'
+            return 1
         else:
-            print 'Error Adding'
+            return  0

@@ -15,6 +15,7 @@ class TorrentProjectCrawler:
         url = tree.xpath('//div[@class="torrent"]/h3/a')[0].attrib['href']
         time = tree.xpath('//div[@class="torrent"]/div/span[@class="bc cated"]')[0].text
         title = tree.xpath('//div[@class="torrent"]/h3/a')[0].attrib['title']
+        torUrl = ''
 
         #now lets get the torrent magnet link
         page = requests.get(url)
@@ -23,8 +24,10 @@ class TorrentProjectCrawler:
         for n in nodes:
             if n.attrib['href'].find('magnet') >= 0:
                 url = n.attrib['href']
+            else:
+                torUrl = n.attrib['href']
 
-        return url, title, time
+        return url, title, time, torUrl
 
 
 
