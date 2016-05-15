@@ -6,9 +6,11 @@ and uploaded to utorrent web api (check how to configure web api in http://www.u
 
 command line usage:
 arguments (just run the commandline.py without arguments to get help)  
--n [Name of Show]  
+-n [Name of Show]  <br /> 
 -f force download the show  (usually it will ask if the torrent correct)  
 -c config file (used instead)  
+-m [multiple download of Show eg. -m S01E10-12]
+
 
 don't forget to update the config.cfg file (configuration):  
 host = [host url of the utorrent web api]  
