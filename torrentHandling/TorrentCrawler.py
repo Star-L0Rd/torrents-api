@@ -27,6 +27,9 @@ class TorrentProjectCrawler:
             else:
                 torUrl = n.attrib['href']
 
+        #add http for '//' urls -> torrent client doesn't know how to work with that
+        if torUrl.find('//') == 0:
+            torUrl = 'http:' + torUrl
         return url, title, time, torUrl
 
 
